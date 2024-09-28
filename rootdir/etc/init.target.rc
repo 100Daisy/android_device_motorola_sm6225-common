@@ -36,6 +36,9 @@ on early-init
     setprop ro.soc.model ${ro.vendor.qti.soc_model}
 
 on init
+    # report max frequency to unity tasks.
+    write /proc/sys/kernel/sched_lib_name "libunity.so"
+    write /proc/sys/kernel/sched_lib_mask_force 255
     write /dev/stune/foreground/schedtune.sched_boost_no_override 1
     write /dev/stune/top-app/schedtune.sched_boost_no_override 1
     write /dev/stune/schedtune.colocate 0
